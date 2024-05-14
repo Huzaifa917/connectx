@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Report</title>
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #report {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #report p {
+            margin: 10px 0;
+        }
+
+        #downloadBtn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #downloadBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Submission Report</h1>
+    <div id="report"></div>
+    <button id="downloadBtn">Download Report</button>
+
+    <!-- Script to parse URL parameters and display report -->
+    <script>
+        // Function to get URL parameter by name
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        
+        // Function to generate PDF report
+        function generatePDF() {
+            // Create a new jsPDF instance
+            const doc = new window.jspdf.jsPDF();
+
+            // Get form data from URL parameters
+            const name = getParameterByName('name');
+            const email = getParameterByName('email');
+            const date = getParameterByName('date');
+            const reviewerName = getParameterByName('reviewerName');
+            const progress = getParameterByName('progress');
+            const obstacles = getParameterByName('obstacles');
+            const clientCentricity = getParameterByName('clientCentricity');
+            const excellenceInnovation = getParameterByName('excellenceInnovation');
+            const collaborationTeamwork = getParameterByName('collaborationTeamwork');
+            const agilityAdaptability = getParameterByName('agilityAdaptability');
+            const integrityResponsibility = getParameterByName('integrityResponsibility');
+            const attendancePunctuality = getParameterByName('attendancePunctuality');
+            const timeliness = getParameterByName('timeliness');
+            const proactiveApproach = getParameterByName('proactiveApproach');
+            const workloadFeedback = getParameterByName('workloadFeedback');
+            const additionalSupportFeedback = getParameterByName('additionalSupportFeedback');
+            const managerFeedback = getParameterByName('managerFeedback');
+            const achievedGoals = getParameterByName('achievedGoals');
+
+            // Set content for PDF
+            const content = `Form Submission Report\n\nName: ${name}\nEmail: ${email}\nDate: ${date}\nTeam Lead Name: ${reviewerName}\nMade significant progress towards goals: ${progress}\nEffectively overcame obstacles: ${obstacles}\nClient-Centricity: ${clientCentricity}\nExcellence & Innovation: ${excellenceInnovation}\nCollaboration & Teamwork: ${collaborationTeamwork}\nAgility & Adaptability: ${agilityAdaptability}\nIntegrity & Responsibility: ${integrityResponsibility}\nAttendance & Punctuality: ${attendancePunctuality}\nTimeliness: ${timeliness}\nProactive Approach: ${proactiveApproach}\nHow do you feel about your workload and ability to achieve goals?: ${workloadFeedback}\nAre there any areas where you require additional support or resources?: ${additionalSupportFeedback}\nDo you have any feedback for your manager or the company?: ${managerFeedback}\n`;
+
+            // Add content to PDF
+            doc.text(content, 10, 10);
+
+            // Save PDF
+            doc.save(`${name}_report.pdf`);
+        }
+
+        // Add event listener to download button
+        document.getElementById('downloadBtn').addEventListener('click', generatePDF);
+
+        // Display form data in report
+        const name = getParameterByName('name');
+        const email = getParameterByName('email');
+        const date = getParameterByName('date');
+        const reviewerName = getParameterByName('reviewerName');
+        const progress = getParameterByName('progress');
+        const obstacles = getParameterByName('obstacles');
+        const clientCentricity = getParameterByName('clientCentricity');
+        const excellenceInnovation = getParameterByName('excellenceInnovation');
+        const collaborationTeamwork = getParameterByName('collaborationTeamwork');
+        const agilityAdaptability = getParameterByName('agilityAdaptability');
+        const integrityResponsibility = getParameterByName('integrityResponsibility');
+        const attendancePunctuality = getParameterByName('attendancePunctuality');
+        const timeliness = getParameterByName('timeliness');
+        const proactiveApproach = getParameterByName('proactiveApproach');
+        const workloadFeedback = getParameterByName('workloadFeedback');
+        const additionalSupportFeedback = getParameterByName('additionalSupportFeedback');
+        const managerFeedback = getParameterByName('managerFeedback');
+        const achievedGoals = getParameterByName('achievedGoals');
+        
+        document.getElementById('report').innerHTML = `
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Team Lead Name:</strong> ${reviewerName}</p>
+            <p><strong>Achieved Goals:</strong> ${achievedGoals}</p>
+            <p><strong>Made significant progress towards goals [1 - 5]:</strong> ${progress}</p>
+            <p><strong>Effectively overcame obstacles in goal pursuit [1 - 5]:</strong> ${obstacles}</p>
+            <p><strong>Client-Centricity [1 - 5]:</strong> ${clientCentricity}</p>
+            <p><strong>Excellence & Innovation [1 - 5]:</strong> ${excellenceInnovation}</p>
+            <p><strong>Collaboration & Teamwork [1 - 5]:</strong> ${collaborationTeamwork}</p>
+            <p><strong>Agility & Adaptability [1 - 5]:</strong> ${agilityAdaptability}</p>
+            <p><strong>Integrity & Responsibility [1 - 5]:</strong> ${integrityResponsibility}</p>
+            <p><strong>Office Discipline & Professional Etiquette:</strong> ${attendancePunctuality}</p>
+            <p><strong>Timeliness [1 - 5]:</strong> ${timeliness}</p>
+            <p><strong>Proactive Approach [1 - 5]:</strong> ${proactiveApproach}</p>
+            <p><strong>How do you feel about your workload and ability to achieve goals?</strong> ${workloadFeedback}</p>
+            <p><strong>Are there any areas where you require additional support or resources?</strong> ${additionalSupportFeedback}</p>
+            <p><strong>Do you have any feedback for your manager or the company?</strong> ${managerFeedback}</p>
+        `;
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Review Meeting</title>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: vertical;
+        height: 100px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .rating-scale {
+        margin-top: 20px;
+    }
+
+    .rating-scale p {
+        margin: 5px 0;
+    }
+</style>
+<body>
+    <h1>Monthly Review Meeting</h1>
+    <div class="rating-scale">
+        <p>Rating Scale:</p>
+        <p>1 - Needs Significant Improvement</p>
+        <p>2 - Needs Improvement</p>
+        <p>3 - Meets Expectations</p>
+        <p>4 - Exceeds Expectations</p>
+        <p>5 - Exceptional</p>
+    </div>
+    <form id="myForm">
+        <label for="name">Employee Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+        
+        <label for="reviewerName">Line Manager Name:</label>
+        <input type="text" id="reviewerName" name="reviewerName" required><br><br>
+
+        <h2>Goal Achievement</h2>
+        <label for="achievedGoals">Achieved goals set for the month:</label><br>
+        <input type="text" id="achievedGoals" name="achievedGoals" required><br><br>
+
+        <label for="progress">Made significant progress towards goals [1 - 5]:</label><br>
+        <input type="number" id="progress" name="progress" min="1" max="5" required><br><br>
+
+        <label for="obstacles">Effectively overcame obstacles in goal pursuit [1 - 5]:</label><br>
+        <input type="number" id="obstacles" name="obstacles" min="1" max="5" required><br><br>
+
+        <h2>Values Alignment</h2>
+        <label for="clientCentricity">Client-Centricity [1 - 5]:</label><br>
+        <input type="number" id="clientCentricity" name="clientCentricity" min="1" max="5" required><br><br>
+        
+        <label for="excellenceInnovation">Excellence & Innovation [1 - 5]:</label><br>
+        <input type="number" id="excellenceInnovation" name="excellenceInnovation" min="1" max="5" required><br><br>
+        
+        <label for="collaborationTeamwork">Collaboration & Teamwork [1 - 5]:</label><br>
+        <input type="number" id="collaborationTeamwork" name="collaborationTeamwork" min="1" max="5" required><br><br>
+        
+        <label for="agilityAdaptability">Agility & Adaptability [1 - 5]:</label><br>
+        <input type="number" id="agilityAdaptability" name="agilityAdaptability" min="1" max="5" required><br><br>
+        
+        <label for="integrityResponsibility">Integrity & Responsibility [1 - 5]:</label><br>
+        <input type="number" id="integrityResponsibility" name="integrityResponsibility" min="1" max="5" required><br><br>
+
+        <h2>Office Discipline & Professional Etiquette</h2>
+        <label for="attendancePunctuality">Attendance & Punctuality [1 - 5]:</label><br>
+        <input type="number" id="attendancePunctuality" name="attendancePunctuality" min="1" max="5" required><br><br>
+        
+        <label for="timeliness">Timeliness [1 - 5]:</label><br>
+        <input type="number" id="timeliness" name="timeliness" min="1" max="5" required><br><br>
+        
+        <label for="proactiveApproach">Proactive Approach [1 - 5]:</label><br>
+        <input type="number" id="proactiveApproach" name="proactiveApproach" min="1" max="5" required><br><br>
+
+        <h2>Employee Feedback</h2>
+        <label for="workloadFeedback">How do you feel about your workload and ability to achieve goals?</label><br>
+        <textarea id="workloadFeedback" name="workloadFeedback" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="additionalSupportFeedback">Are there any areas where you require additional support or resources?</label><br>
+        <textarea id="additionalSupportFeedback" name="additionalSupportFeedback" rows="4" cols="50" required></textarea><br><br>
+        
+        <label for="managerFeedback">Do you have any feedback for your manager or the company?</label><br>
+        <textarea id="managerFeedback" name="managerFeedback" rows="4" cols="50" required></textarea><br><br>
+
+  
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Script to handle form submission -->
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Fetch form data
+            const formData = new FormData(this);
+            
+            // Convert form data to JSON
+            const jsonData = {};
+            formData.forEach((value, key) => {jsonData[key] = value});
+            
+            // Redirect to report page with form data
+            window.location.href = 'report.html?' + new URLSearchParams(jsonData).toString();
+        });
+    </script>
+</body>
+</html>
